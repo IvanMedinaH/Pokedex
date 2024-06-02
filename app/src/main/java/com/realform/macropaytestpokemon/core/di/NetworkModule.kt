@@ -3,7 +3,6 @@ package com.realform.macropaytestpokemon.core.di
 import com.google.gson.Gson
 import com.realform.macropaytestpokemon.core.consts.Secret
 import com.realform.macropaytestpokemon.data.remote.interfaceservice.PokemonService.IPokedexService
-import com.realform.macropaytestpokemon.data.remote.interfaceservice.nowPlayingService.detail.INowPlayingDetailService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -44,6 +43,4 @@ fun providesRetrofit(converter: Gson, client:OkHttpClient): Retrofit {
 fun providesIPokedexService(retrofit: Retrofit): IPokedexService = retrofit.create(
     IPokedexService::class.java)
 
-fun providesNowPlayingDetailApiService(retrofit:Retrofit):INowPlayingDetailService=retrofit.create(
-    INowPlayingDetailService::class.java)
 

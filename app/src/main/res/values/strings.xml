@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android App</string>
+    <string name="pokedex_list">POKEDEX:</string>
+    <string name="new_comment">Add a new Comment</string>
+    <string name="add_new_comment_short">Add a new Comment</string>
+    <string name="add_comment">Add new Comment</string>
+    <string name="shortcut_label">New Comment</string>
+</resources>

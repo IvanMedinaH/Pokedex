@@ -1,5 +1,6 @@
 package com.realform.macropaytestpokemon.presentation.nav.mainNavigation
 
+import PocketMonsterScreen
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.material.ExperimentalMaterialApi
@@ -47,10 +48,10 @@ fun RootNavGraphNavigation(navHostController: NavHostController) {
 
     NavHost(
         navController = navHostController,
-        startDestination = Screen.LoginPage.route
+        startDestination = Screen.PocketMonstersPage.route
     ) {
 
-        ///region Landing
+        ///region LANDING
         composable(Screen.Landing.route) {
             if (!isClicked) {
                 LandingScreen {
@@ -67,7 +68,7 @@ fun RootNavGraphNavigation(navHostController: NavHostController) {
             LoginScreen(
                 onLoginSuccess = {
                     Log.d("Navigation", "Navigating to Main page")
-                    navHostController.navigate(Screen.PokemonPage.route)
+                    navHostController.navigate(Screen.PocketMonstersPage.route)
                 },
                 navigateToWebsite = { url ->
                     Log.d("Navigation", "Navigating to webpage")
@@ -102,6 +103,17 @@ fun RootNavGraphNavigation(navHostController: NavHostController) {
             WebPage(backStackEntr.arguments?.getString("url") ?: "")
         }
         ///endregion
+
+
+        ///region Pocket Monster
+        composable(Screen.PocketMonstersPage.route){
+            PocketMonsterScreen(navigateToDetail = {id->
+                navHostController.navigate("${Screen.PokemonDetailPage.route}/$id")
+            })
+        }
+        ///endregion
+
+
 
         ///region POKEMON LIST
         composable(Screen.PokemonPage.route){
@@ -141,8 +153,11 @@ fun RootNavGraphNavigation(navHostController: NavHostController) {
 
 
 sealed class Screen(val route: String) {
+    object PocketMonstersPage:Screen(route="POCKETMONSTERS")
+
     object PokemonPage:Screen(route="POKEMONS")
     object PokemonDetailPage:Screen(route="POKEMONDETAIL")
+
     object Landing : Screen(route = "LANDING")
     object LoginPage : Screen(route = "LOGIN")
     object userRegistyPage : Screen(route = "REGISTRY")

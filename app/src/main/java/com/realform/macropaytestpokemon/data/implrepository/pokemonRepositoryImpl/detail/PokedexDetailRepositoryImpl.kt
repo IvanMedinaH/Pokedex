@@ -1,7 +1,6 @@
 package com.realform.macropaytestpokemon.data.implrepository.pokemonRepositoryImpl.detail
 
 import com.realform.macropaytestpokemon.data.mapper.pokemons.toDomain
-import com.realform.macropaytestpokemon.data.mapper.pokemons.toPokedex
 import com.realform.macropaytestpokemon.data.remote.interfaceservice.PokemonService.IPokedexService
 import com.realform.macropaytestpokemon.data.utils.ResultAPI
 import com.realform.macropaytestpokemon.domain.models.pokemons.detail.PokeMonDetails

@@ -3,6 +3,7 @@ package com.realform.macropaytestpokemon
 import android.app.Application
 import com.realform.macropaytestpokemon.core.di.firebaseModule
 import com.realform.macropaytestpokemon.core.di.networkModule
+import com.realform.macropaytestpokemon.core.di.pokemons.pocketMonsterRepoModule
 import com.realform.macropaytestpokemon.core.di.pokemons.pokedexDetailRepositoryModule
 import com.realform.macropaytestpokemon.core.di.pokemons.pokedexRepositoryModule
 import com.realform.macropaytestpokemon.core.di.roomModule
@@ -13,11 +14,10 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class PokemonApplication: Application() {
+class PokemonApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         startKoin {
             // Log Koin into Android logger information for logcat
             androidLogger()
@@ -27,6 +27,7 @@ class PokemonApplication: Application() {
             modules(
                 networkModule,
                 viewModelModule,
+                pocketMonsterRepoModule,
                 pokedexRepositoryModule,
                 pokedexDetailRepositoryModule,
                 signUpRepository,
@@ -35,6 +36,5 @@ class PokemonApplication: Application() {
                 roomModule
             )
         }
-
     }
 }

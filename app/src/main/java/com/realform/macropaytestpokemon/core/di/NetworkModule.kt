@@ -2,7 +2,9 @@ package com.realform.macropaytestpokemon.core.di
 
 import com.google.gson.Gson
 import com.realform.macropaytestpokemon.core.consts.Secret
+import com.realform.macropaytestpokemon.data.remote.interfaceservice.PokemonService.IPocketmonsterService
 import com.realform.macropaytestpokemon.data.remote.interfaceservice.PokemonService.IPokedexService
+import com.realform.macropaytestpokemon.domain.repository.pokedexRepository.IPocketmonsterRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -13,6 +15,8 @@ val networkModule = module {
 
     ///region pokemon
     single { providesIPokedexService(get()) }
+
+    single { providesIPocketmonsterService(get()) }
     ///endregion
 
     single { providesParser() }
@@ -35,12 +39,15 @@ fun providesOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
 fun providesRetrofit(converter: Gson, client:OkHttpClient): Retrofit {
     return  return Retrofit.Builder()
         .client(client)
-        .baseUrl(Secret.POKEDEX_API)
+        .baseUrl(Secret.API_LOCAL)
         .addConverterFactory(GsonConverterFactory.create(converter))
         .build()
 }
 
 fun providesIPokedexService(retrofit: Retrofit): IPokedexService = retrofit.create(
     IPokedexService::class.java)
+
+fun providesIPocketmonsterService(retrofit: Retrofit): IPocketmonsterService = retrofit.create(
+    IPocketmonsterService::class.java)
 
 
